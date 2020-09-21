@@ -1,0 +1,58 @@
+# ------------------------------------------------------------------------
+#
+# Copyright 2020 WSO2, Inc. (http://wso2.com)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License
+#
+# ------------------------------------------------------------------------
+
+version: '3.8'
+services:
+  api-manager:
+    build: ../am-core
+    healthcheck:
+      test:
+        - CMD
+        - nc
+        - '-z'
+        - localhost
+        - '9443'
+      interval: 10s
+      start_period: 180s
+      retries: 20
+    #volumes:
+      #- '../am-core/apim-conf:/home/wso2carbon/wso2-config-volume'
+    ports:
+      - '9443:9443'
+      - '8280:8280'
+      - '8243:8243'
+  int-gw:
+    build: ../int-gw
+    healthcheck:
+      test:
+        - CMD
+        - nc
+        - '-z'
+        - localhost
+        - '9443'
+      interval: 10s
+      start_period: 180s
+      retries: 20
+    volumes:
+      #- '../int-gw/mi-conf:/home/wso2carbon/wso2-config-volume'
+      - '../int-gw/deployment/carbonapps:/home/wso2carbon/wso2mi-1.2.0/repository/deployment/server/carbonapps'
+      - '../int-gw/deployment/synapse-configs:/home/wso2carbon/wso2mi-1.2.0/repository/deployment/server/synapse-configs'
+    ports:
+      - '9444:9443'
+      - '8281:8280'
+      - '8244:8243'
