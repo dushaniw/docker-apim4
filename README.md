@@ -1,3 +1,4 @@
+```
 am4-docker-dist
 ├── am-core
 │   ├── conf
@@ -33,12 +34,12 @@ am4-docker-dist
     │   └── siddhi-files
     ├── Dockerfile
     └── lib
+```
 
+To run am4-docker-distribution in **basic** mode with AM Core and Integration Gateway,  
+1. Go to `am4-docker-dist/bin/`
+2. Open a terminal and run `sh startup.sh --basic`
 
-To run am4-docker-distribution in **basic** mode with AM Core and Integration Gateway,
-	- Go to `am4-docker-dist/bin/`
-	- Open a terminal and run `sh startup.sh --basic`
-
-To run am4-docker-distribution in **full** mode with AM Core, Integration Gateway and Streaming Provider,
-	- Go to `am4-docker-dist/bin/`
-	- Open a terminal and run `sh startup.sh --full`
+To run am4-docker-distribution in **full** mode with AM Core, Integration Gateway and Streaming Provider,  
+1. Go to `am4-docker-dist/bin/`
+2. Open a terminal and run `sh startup.sh --full`
